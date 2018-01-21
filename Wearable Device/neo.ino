@@ -1,55 +1,47 @@
 
-#define USE_ARDUINO_INTERRUPTS true
-#include <PulseSensorPlayground.h>
+#define USE_ARDUINO_INTERRUPTS true    // Set-up low-level interrupts for most acurate BPM math.
+#include <PulseSensorPlayground.h>     // Includes the PulseSensorPlayground Library.   
+
+//  Variables
+const int PulseWire = 0;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
+const int LED13 = 13;          // The on-board Arduino LED, close to PIN 13.
+int Threshold = 550;           // Determine which Signal to "count as a beat" and which to ignore.
+                               // Use the "Gettting Started Project" to fine-tune Threshold Value beyond default setting.
+                               // Otherwise leave the default "550" value. 
+                               
+PulseSensorPlayground pulseSensor;  // Creates an instance of the PulseSensorPlayground object called "pulseSensor"
 
 
-const int OUTPUT_TYPE = SERIAL_PLOTTER;
+void setup() {   
 
+  Serial.begin(9600);          // For Serial Monitor
 
-const int PIN_INPUT = A0;
-const int PIN_BLINK = 13;    // Pin 13 is the on-board LED
-const int PIN_FADE = 5;
-const int THRESHOLD = 550;   // Adjust this number to avoid noise when idle
+  // Configure the PulseSensor object, by assigning our variables to it. 
+  pulseSensor.analogInput(PulseWire);   
+  pulseSensor.blinkOnPulse(LED13);       //auto-magically blink Arduino's LED with heartbeat.
+  pulseSensor.setThreshold(Threshold);   
 
-
-PulseSensorPlayground pulseSensor;
-
-void setup() {
- 
-  Serial.begin(115200);
-
-  
-
-  pulseSensor.analogInput(PIN_INPUT);
-  pulseSensor.blinkOnPulse(PIN_BLINK);
-  pulseSensor.fadeOnPulse(PIN_FADE);
-
-  pulseSensor.setSerial(Serial);
-  pulseSensor.setOutputType(OUTPUT_TYPE);
-  pulseSensor.setThreshold(THRESHOLD);
-
-  
-  if (!pulseSensor.begin()) {
-    
-    for(;;) {
-      
-      digitalWrite(PIN_BLINK, LOW);
-      delay(50);
-      digitalWrite(PIN_BLINK, HIGH);
-      delay(50);
-    }
+  // Double-check the "pulseSensor" object was created and "began" seeing a signal. 
+   if (pulseSensor.begin()) {
+    Serial.println("We created a pulseSensor Object !");  //This prints one time at Arduino power-up,  or on Arduino reset.  
   }
 }
+
+
 
 void loop() {
- 
-  delay(20);
 
-  // write the latest sample to Serial.
- pulseSensor.outputSample();
+ int myBPM = pulseSensor.getBeatsPerMinute();  // Calls function on our pulseSensor object that returns BPM as an "int".
+                                               // "myBPM" hold this BPM value now. 
+
+if (pulseSensor.sawStartOfBeat()) {            // Constantly test to see if "a beat happened". 
+// Serial.print("BPM: ");                        // Print phrase "BPM: " 
+ Serial.print(myBPM);                        // Print the value inside of myBPM. 
+ Serial.print(",");                        // Print the value inside of myBPM. 
+}
+
+  delay(20);                    // considered best practice in a simple sketch.
+
+}
 
   
-  if (pulseSensor.sawStartOfBeat()) {
-   pulseSensor.outputBeat();
-  }
-}
