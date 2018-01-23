@@ -5,6 +5,10 @@ Combining Machine Learning and IoT to Predict Heart Disease and Monitor Health
 
 WIP 
 
+# Architecture
+
+WIP
+
 # Features 
 
 WIP 
