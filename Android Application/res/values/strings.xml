@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">btcsv</string>
+    <string name="text_status"></string>
+    <string name="action_settings">Settings</string>
+    <string name="text_channel">port</string>
+    <string name="title_tab_connection">Connection</string>
+    <string name="title_tab2">values</string>
+    <string name="title_tab3">chart</string>
+    <string name="button_connect">connect</string>
+    <string name="button_disconnect">disconnect</string>
+
+</resources>

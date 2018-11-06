@@ -1,0 +1,113 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/tabhost" android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.example.btcsv.MainActivity" >
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" >
+        <TabWidget android:id="@android:id/tabs" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        
+        <FrameLayout android:id="@android:id/tabcontent" android:layout_width="match_parent" android:layout_height="match_parent" >
+            <LinearLayout android:id="@+id/tab1" android:layout_width="match_parent" android:orientation="vertical" android:layout_height="match_parent" >
+			    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" >
+			        <TextView android:id="@+id/textStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/text_status" />
+                </LinearLayout>
+			    			
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" >
+                    <Button android:id="@+id/connect" style="?android:attr/buttonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="V" android:textColor="#1F75FE" android:textStyle="bold" />
+                    <Button android:id="@+id/disconnect" style="?android:attr/buttonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="X" android:visibility="gone" android:textColor="#7F0000" android:textStyle="bold" />
+                    <Spinner android:id="@+id/chType" android:layout_width="wrap_content" android:layout_height="wrap_content" android:entries="@array/channels" />
+
+                    <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content" >
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" >
+    
+                    <LinearLayout android:id="@+id/layBt" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" >
+                        <Spinner android:id="@+id/btChannels" android:minWidth="50sp" android:layout_width="wrap_content" android:layout_height="fill_parent" />
+                    </LinearLayout>
+                    
+	                <LinearLayout android:id="@+id/laySerial" android:visibility="gone" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" >
+	                    <Spinner android:id="@+id/serialPorts" android:minWidth="50sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" />
+	                    <Spinner android:id="@+id/serialBauds" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/bauds" />
+	                    <Spinner android:id="@+id/serialParity" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/parities" />
+	                    <Spinner android:id="@+id/serialStops" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/stops" />
+	                </LinearLayout>
+	                
+	                <LinearLayout
+	                    android:id="@+id/layTcp" android:visibility="gone" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" >
+	                    <EditText android:id="@+id/tcpAddr" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:ems="6" android:inputType="text" android:digits="0123456789." />
+	                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" />
+	                    <EditText android:id="@+id/tcpPort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:ems="4" android:inputType="number" />
+	                </LinearLayout>
+	                                
+	                <LinearLayout android:id="@+id/layUdp" android:visibility="gone" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" >
+	                    <EditText android:id="@+id/udpAddr" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:focusable="false" android:editable="false" android:inputType="text" />
+	                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=":" />
+	                    <EditText android:id="@+id/udpPort" android:layout_width="wrap_content" android:layout_height="wrap_content" android:ems="4" android:inputType="number" />
+	                </LinearLayout>
+			    
+			    </LinearLayout> </HorizontalScrollView> </LinearLayout>
+			    
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" >
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="x:" />
+                    <Spinner android:id="@+id/xType" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:entries="@array/xType" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="skip:" />
+                    <EditText android:id="@+id/skipLines" android:layout_width="wrap_content" android:layout_height="wrap_content" android:ems="4" android:inputType="number" />
+                    <CheckBox android:id="@+id/singleCol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1col" />
+                </LinearLayout>
+                
+                <View android:layout_width="match_parent" android:layout_height="10dp" />
+                
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" >
+                    <CheckBox android:id="@+id/chartEn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="chart" />
+                    <Button android:id="@+id/chartRes" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="reset" />
+                </LinearLayout>
+                
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" >
+                    <CheckBox android:id="@+id/csvDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+date" />
+                    <Button android:id="@+id/csvSave" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=">CSV" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/tab2" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" >
+                <TextView android:id="@+id/commentValues" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" android:textAppearance="?android:attr/textAppearanceMedium" android:text="" />
+                <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content" >
+	                <LinearLayout android:visibility="gone" android:id="@+id/cmdsValues" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" >
+	                    <Button android:id="@+id/cmdValue1" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" />
+	                    <Button android:id="@+id/cmdValue2" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" />
+	                    <Button android:id="@+id/cmdValue3" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" />
+	                    <Button android:id="@+id/cmdValue4" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" />
+	                    <Button android:id="@+id/cmdValue5" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" />
+	                    <Button android:id="@+id/cmdValue6" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6" />
+	                    <Button android:id="@+id/cmdValue7" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7" />
+	                    <Button android:id="@+id/cmdValue8" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8" />
+	                    <Button android:id="@+id/cmdValue9" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="9" />
+	                    <Button android:id="@+id/cmdValue10" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10" />
+	                </LinearLayout>
+                </HorizontalScrollView>
+                <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" >
+	   	            <LinearLayout android:id="@+id/valuesLayout" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" />
+	            </ScrollView>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/tab3" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" >
+                <TextView android:id="@+id/commentChart" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" android:textAppearance="?android:attr/textAppearanceMedium" android:text="" />
+                <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content" >
+	                <LinearLayout android:visibility="gone" android:id="@+id/cmdsChart" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" >
+	                    <Button android:id="@+id/cmdChart1" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" />
+	                    <Button android:id="@+id/cmdChart2" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" />
+	                    <Button android:id="@+id/cmdChart3" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" />
+	                    <Button android:id="@+id/cmdChart4" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" />
+	                    <Button android:id="@+id/cmdChart5" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" />
+	                    <Button android:id="@+id/cmdChart6" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6" />
+	                    <Button android:id="@+id/cmdChart7" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7" />
+	                    <Button android:id="@+id/cmdChart8" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8" />
+	                    <Button android:id="@+id/cmdChart9" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="9" />
+	                    <Button android:id="@+id/cmdChart10" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="10" />
+	                </LinearLayout>
+                </HorizontalScrollView>
+                <HorizontalScrollView android:id="@+id/horizontalScrollView1" android:layout_width="wrap_content" android:layout_height="wrap_content" >
+   	                <LinearLayout android:id="@+id/chartEnableLayout" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="match_parent" />
+                </HorizontalScrollView>
+                <lecho.lib.hellocharts.view.LineChartView android:id="@+id/chart" android:layout_width="match_parent" android:layout_height="match_parent" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</TabHost>

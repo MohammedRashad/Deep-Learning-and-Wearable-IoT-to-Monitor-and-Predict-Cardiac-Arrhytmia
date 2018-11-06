@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="xType">
+        <item>line №</item>
+        <item>1st col</item>
+        <item>time</item>
+    </string-array>
+    <string-array name="channels">
+        <item>bt</item>
+        <item>usb</item>
+        <item>tcp</item>
+        <item>udp</item>
+    </string-array>
+    <string-array name="bauds">
+        <item>1200</item>
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>14400</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
+    <string-array name="parities">
+        <item>none</item>
+        <item>odd</item>
+        <item>even</item>
+        <item>mark</item>
+        <item>space</item>
+    </string-array>
+    <string-array name="stops">
+        <item>1.0</item>
+        <item>1.5</item>
+        <item>2.0</item>
+    </string-array>
+</resources>
