@@ -1,4 +1,4 @@
-# Neo-Health-Monitor
+# Smart-Heart-Monitor-With-ML
 Combining Machine Learning and IoT to Predict Heart Disease and Monitor Health
 
 Adding more doc soon 
